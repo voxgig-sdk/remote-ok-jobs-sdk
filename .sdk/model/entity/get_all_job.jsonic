@@ -1,0 +1,39 @@
+# Entity: get_all_job
+
+main: kit: entity: get_all_job: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "disclaimer"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "term"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "get_all_job"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          method: "GET"
+          orig: "/"
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

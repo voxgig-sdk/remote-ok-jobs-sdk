@@ -1,0 +1,221 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Remote OK Jobs API",
+    "description": "Remote OK is the #1 remote-only jobs board on the web. It has over 30,000+ remote job listings, adding new ones every day. With this API, now you can build apps with our data feed which covers 80% of remote jobs on the web.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Remote OK",
+      "url": "https://www.remoteok.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://remoteok.com/api",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Get all remote jobs",
+        "description": "Returns a list of all remote job listings from the Remote OK jobs board. The first element in the response array contains legal information and should be parsed accordingly.",
+        "operationId": "getAllJobs",
+        "tags": [
+          "Jobs"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with job listings",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "oneOf": [
+                      {
+                        "$ref": "#/components/schemas/LegalInfo"
+                      },
+                      {
+                        "$ref": "#/components/schemas/Job"
+                      }
+                    ]
+                  }
+                },
+                "example": [
+                  {
+                    "disclaimer": "By accessing this API, you agree to the terms of service",
+                    "terms": "https://remoteok.com/terms"
+                  },
+                  {
+                    "id": "123456",
+                    "slug": "senior-software-engineer",
+                    "epoch": 1640995200,
+                    "date": "2022-01-01T00:00:00Z",
+                    "company": "Example Tech",
+                    "company_logo": "https://remoteok.com/assets/img/jobs/example-logo.png",
+                    "position": "Senior Software Engineer",
+                    "tags": [
+                      "javascript",
+                      "react",
+                      "node"
+                    ],
+                    "logo": "https://remoteok.com/assets/img/jobs/example-logo.png",
+                    "description": "We are looking for a Senior Software Engineer...",
+                    "location": "Anywhere",
+                    "apply_url": "https://example.com/apply",
+                    "url": "https://remoteok.com/remote-jobs/123456"
+                  }
+                ]
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests - Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "LegalInfo": {
+        "type": "object",
+        "description": "Legal information and terms of service notice (first element in response array)",
+        "properties": {
+          "disclaimer": {
+            "type": "string",
+            "description": "Legal disclaimer text"
+          },
+          "terms": {
+            "type": "string",
+            "description": "URL to terms of service"
+          }
+        }
+      },
+      "Job": {
+        "type": "object",
+        "description": "Remote job listing",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the job"
+          },
+          "slug": {
+            "type": "string",
+            "description": "URL-friendly version of the job title"
+          },
+          "epoch": {
+            "type": "integer",
+            "description": "Unix timestamp of when the job was posted"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "ISO 8601 formatted date when the job was posted"
+          },
+          "company": {
+            "type": "string",
+            "description": "Name of the hiring company"
+          },
+          "company_logo": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to the company logo image"
+          },
+          "position": {
+            "type": "string",
+            "description": "Job position title"
+          },
+          "tags": {
+            "type": "array",
+            "description": "Array of tags/skills related to the job",
+            "items": {
+              "type": "string"
+            }
+          },
+          "logo": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to the job/company logo"
+          },
+          "description": {
+            "type": "string",
+            "description": "Full job description in HTML or plain text"
+          },
+          "location": {
+            "type": "string",
+            "description": "Location information for the job (typically 'Anywhere' for remote jobs)"
+          },
+          "apply_url": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL where candidates can apply for the job"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to the job listing on Remote OK"
+          },
+          "original": {
+            "type": "boolean",
+            "description": "Whether this is an original posting"
+          },
+          "featured": {
+            "type": "boolean",
+            "description": "Whether the job is featured"
+          },
+          "salary_min": {
+            "type": "integer",
+            "description": "Minimum salary (if provided)"
+          },
+          "salary_max": {
+            "type": "integer",
+            "description": "Maximum salary (if provided)"
+          }
+        },
+        "required": [
+          "id",
+          "position",
+          "company"
+        ]
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error message"
+          },
+          "message": {
+            "type": "string",
+            "description": "Detailed error description"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Jobs",
+      "description": "Operations related to remote job listings"
+    }
+  ]
+}

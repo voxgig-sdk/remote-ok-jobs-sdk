@@ -1,0 +1,26 @@
+{
+  "existing": {
+    "get_all_job": {
+      "GET_ALL_JOB00": {
+        "disclaimer": "s14",
+        "term": "s15"
+      },
+      "GET_ALL_JOB01": {
+        "disclaimer": "s28",
+        "term": "s29"
+      },
+      "GET_ALL_JOB02": {
+        "disclaimer": "s3c",
+        "term": "s3d"
+      }
+    }
+  },
+  "new": {
+    "get_all_job": {
+      "get_all_job_ref01": {
+        "disclaimer": "s50",
+        "term": "s51"
+      }
+    }
+  }
+}

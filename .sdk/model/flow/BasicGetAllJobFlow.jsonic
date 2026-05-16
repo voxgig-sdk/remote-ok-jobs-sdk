@@ -1,0 +1,22 @@
+# BasicGetAllJobFlow
+
+main: kit: flow: BasicGetAllJobFlow:
+{
+  entity: "get_all_job",
+  kind: "basic",
+  name: "BasicGetAllJobFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "get_all_job_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicGetAllJobFlow"
+}

@@ -1,0 +1,24 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        name: "Remote OK"
+        url: "https://www.remoteok.com"
+      }
+      description: "Remote OK is the #1 remote-only jobs board on the web. It has over 30,000+ remote job listings, adding new ones every day. With this API, now you can build apps with our data feed which covers 80% of remote jobs on the web."
+      servers: [
+        {
+          description: "Production server"
+          url: "https://remoteok.com/api"
+        }
+      ]
+      title: "Remote OK Jobs API"
+      version: "1.0.0"
+    }
+  }
+}
+
+}
