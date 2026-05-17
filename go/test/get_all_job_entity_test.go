@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/remote-ok-jobs-sdk"
-	"github.com/voxgig-sdk/remote-ok-jobs-sdk/core"
+	sdk "github.com/voxgig-sdk/remote-ok-jobs-sdk/go"
+	"github.com/voxgig-sdk/remote-ok-jobs-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/remote-ok-jobs-sdk/go/utility/struct"
 )
 
 func TestGetAllJobEntity(t *testing.T) {

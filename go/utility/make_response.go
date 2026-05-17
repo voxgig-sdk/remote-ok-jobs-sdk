@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/remote-ok-jobs-sdk/core"
+import "github.com/voxgig-sdk/remote-ok-jobs-sdk/go/core"
 
 func makeResponseUtil(ctx *core.Context) (*core.Response, error) {
 	if ctx.Out["response"] != nil {

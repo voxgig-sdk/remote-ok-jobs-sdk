@@ -1,9 +1,9 @@
 package entity
 
 import (
-	"github.com/voxgig-sdk/remote-ok-jobs-sdk/core"
+	"github.com/voxgig-sdk/remote-ok-jobs-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/remote-ok-jobs-sdk/go/utility/struct"
 )
 
 type GetAllJobEntity struct {

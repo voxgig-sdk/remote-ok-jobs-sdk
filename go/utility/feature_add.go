@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/remote-ok-jobs-sdk/core"
+import "github.com/voxgig-sdk/remote-ok-jobs-sdk/go/core"
 
 func featureAddUtil(ctx *core.Context, f core.Feature) {
 	client := ctx.Client

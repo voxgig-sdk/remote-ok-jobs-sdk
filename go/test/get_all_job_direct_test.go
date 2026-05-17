@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/remote-ok-jobs-sdk"
-	"github.com/voxgig-sdk/remote-ok-jobs-sdk/core"
+	sdk "github.com/voxgig-sdk/remote-ok-jobs-sdk/go"
+	"github.com/voxgig-sdk/remote-ok-jobs-sdk/go/core"
 )
 
 func TestGetAllJobDirect(t *testing.T) {
