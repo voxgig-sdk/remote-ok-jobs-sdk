@@ -31,9 +31,7 @@ loading a specific record.
 ```ruby
 require_relative "RemoteOkJobs_sdk"
 
-client = RemoteOkJobsSDK.new({
-  "apikey" => ENV["REMOTE-OK-JOBS_APIKEY"],
-})
+client = RemoteOkJobsSDK.new({})
 ```
 
 ### 2. List getalljobs
@@ -127,7 +125,6 @@ Create a `.env.local` file at the project root:
 
 ```
 REMOTE-OK-JOBS_TEST_LIVE=TRUE
-REMOTE-OK-JOBS_APIKEY=<your-key>
 ```
 
 Then run:
@@ -150,7 +147,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `String` | API key for authentication. |
 | `base` | `String` | Base URL of the API server. |
 | `prefix` | `String` | URL path prefix prepended to all requests. |
 | `suffix` | `String` | URL path suffix appended to all requests. |

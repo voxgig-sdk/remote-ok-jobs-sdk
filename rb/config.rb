@@ -15,9 +15,6 @@ module RemoteOkJobsConfig
       },
       "options" => {
         "base" => "https://remoteok.com/api",
-        "auth" => {
-          "prefix" => "Bearer",
-        },
         "headers" => {
           "content-type" => "application/json",
         },

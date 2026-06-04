@@ -68,14 +68,12 @@ function get_all_job_direct_setup($mockres)
     $env = Runner::env_override([
         "REMOTEOKJOBS_TEST_GET_ALL_JOB_ENTID" => [],
         "REMOTEOKJOBS_TEST_LIVE" => "FALSE",
-        "REMOTEOKJOBS_APIKEY" => "NONE",
     ]);
 
     $live = $env["REMOTEOKJOBS_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
-            "apikey" => $env["REMOTEOKJOBS_APIKEY"],
         ];
         $client = new RemoteOkJobsSDK($merged_opts);
         return [

@@ -17,8 +17,31 @@ main: {
       ]
       title: "Remote OK Jobs API"
       version: "1.0.0"
+      tagline: "Browse 30,000+ remote job listings from Remote OK, the remote-only jobs board"
+      homepage: "https://remoteok.com/"
+      docs_url: "https://remoteok.com/api"
+      license_short: "Free to use with attribution: link back (do-follow) to Remote OK and credit it as the source."
+      license_md: `- Attribution required: link back to the listing URL on Remote OK with a do-follow link (no \`nofollow\`).
+- Must mention Remote OK as the source so traffic flows back.
+- The Remote OK name may be used freely; the Remote OK logo requires written permission.
+- Non-compliance may result in access being suspended.`
+      about_md: `[Remote OK](https://remoteok.com/) is a remote-only job board that aggregates and publishes thousands of remote job postings across software engineering, design, marketing, customer support, and other categories. Its public API exposes the same listings that appear on the site.
+
+The API is a single JSON endpoint that returns all currently available listings. Each listing typically includes:
+
+- Identifiers: \`id\`, \`slug\`
+- Employer and role: \`company\`, \`company_logo\`, \`position\`
+- Timestamps: \`date\`, \`epoch\`, \`last_updated\`
+- Geography: \`location\`
+- Content: \`description\`, \`tags\`
+- Compensation: \`salary_min\`, \`salary_max\`
+- Links: \`url\` (listing) and \`apply_url\`
+
+The endpoint is served with CORS enabled and does not require authentication. Postings often embed a spam-prevention keyword (e.g. "FEASIBLE", "PLUSH") that applicants are expected to quote, so consumers should preserve the \`description\` field intact when rendering jobs.`
+      entity_desc: {
+        get_all_job: "All current remote job listings as a JSON array, served from the single endpoint `GET /api`."
+      }
+      auth: false
     }
   }
-}
-
 }

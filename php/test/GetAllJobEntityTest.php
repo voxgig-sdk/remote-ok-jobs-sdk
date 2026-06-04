@@ -86,7 +86,6 @@ function get_all_job_basic_setup($extra)
         "REMOTEOKJOBS_TEST_GET_ALL_JOB_ENTID" => $idmap,
         "REMOTEOKJOBS_TEST_LIVE" => "FALSE",
         "REMOTEOKJOBS_TEST_EXPLAIN" => "FALSE",
-        "REMOTEOKJOBS_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +97,6 @@ function get_all_job_basic_setup($extra)
     if ($env["REMOTEOKJOBS_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["REMOTEOKJOBS_APIKEY"],
             ],
             $extra ?? [],
         ]);
