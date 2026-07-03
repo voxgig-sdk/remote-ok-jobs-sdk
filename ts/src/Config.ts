@@ -38,6 +38,10 @@ class Config {
   options = {
     base: 'https://remoteok.com/api',
 
+    auth: {
+      prefix: 'Bearer',
+    },
+
     headers: {
       "content-type": "application/json"
     },
@@ -55,40 +59,40 @@ class Config {
     "get_all_job": {
       "fields": [
         {
+          "active": true,
           "name": "disclaimer",
           "req": false,
           "type": "`$STRING`",
-          "active": true,
           "index$": 0
         },
         {
+          "active": true,
           "name": "term",
           "req": false,
           "type": "`$STRING`",
-          "active": true,
           "index$": 1
         }
       ],
       "name": "get_all_job",
       "op": {
         "list": {
+          "input": "data",
           "name": "list",
           "points": [
             {
+              "active": true,
+              "args": {},
               "method": "GET",
               "orig": "/",
+              "parts": [],
+              "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "active": true,
-              "parts": [],
-              "args": {},
-              "select": {},
               "index$": 0
             }
           ],
-          "input": "data",
           "key$": "list"
         }
       },

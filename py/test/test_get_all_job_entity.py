@@ -92,6 +92,7 @@ def _get_all_job_basic_setup(extra):
         "REMOTEOKJOBS_TEST_GET_ALL_JOB_ENTID": idmap,
         "REMOTEOKJOBS_TEST_LIVE": "FALSE",
         "REMOTEOKJOBS_TEST_EXPLAIN": "FALSE",
+        "REMOTEOKJOBS_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,6 +103,7 @@ def _get_all_job_basic_setup(extra):
     if env.get("REMOTEOKJOBS_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
+                "apikey": env.get("REMOTEOKJOBS_APIKEY"),
             },
             extra or {},
         ])

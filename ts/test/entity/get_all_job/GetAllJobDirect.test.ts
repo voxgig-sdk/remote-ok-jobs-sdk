@@ -79,12 +79,14 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'REMOTEOKJOBS_TEST_GET_ALL_JOB_ENTID': {},
     'REMOTEOKJOBS_TEST_LIVE': 'FALSE',
+    'REMOTEOKJOBS_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.REMOTEOKJOBS_TEST_LIVE
 
   if (live) {
     const client = new RemoteOkJobsSDK({
+      apikey: env.REMOTEOKJOBS_APIKEY,
     })
 
     let idmap: any = env['REMOTEOKJOBS_TEST_GET_ALL_JOB_ENTID']

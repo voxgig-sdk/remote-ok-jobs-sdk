@@ -93,12 +93,14 @@ func get_all_jobDirectSetup(mockres any) *get_all_jobDirectSetupResult {
 	env := envOverride(map[string]any{
 		"REMOTEOKJOBS_TEST_GET_ALL_JOB_ENTID": map[string]any{},
 		"REMOTEOKJOBS_TEST_LIVE":    "FALSE",
+		"REMOTEOKJOBS_APIKEY":       "NONE",
 	})
 
 	live := env["REMOTEOKJOBS_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
+			"apikey": env["REMOTEOKJOBS_APIKEY"],
 		}
 		client := sdk.NewRemoteOkJobsSDK(mergedOpts)
 

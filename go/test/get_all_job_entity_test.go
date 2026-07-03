@@ -119,6 +119,7 @@ func get_all_jobBasicSetup(extra map[string]any) *entityTestSetup {
 		"REMOTEOKJOBS_TEST_GET_ALL_JOB_ENTID": idmap,
 		"REMOTEOKJOBS_TEST_LIVE":      "FALSE",
 		"REMOTEOKJOBS_TEST_EXPLAIN":   "FALSE",
+		"REMOTEOKJOBS_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["REMOTEOKJOBS_TEST_GET_ALL_JOB_ENTID"])
@@ -129,6 +130,7 @@ func get_all_jobBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["REMOTEOKJOBS_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
+				"apikey": env["REMOTEOKJOBS_APIKEY"],
 			},
 			extra,
 		})

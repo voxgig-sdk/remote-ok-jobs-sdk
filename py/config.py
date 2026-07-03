@@ -15,6 +15,9 @@ def make_config():
         },
         "options": {
             "base": "https://remoteok.com/api",
+            "auth": {
+                "prefix": "Bearer",
+            },
             "headers": {
         "content-type": "application/json",
       },
@@ -26,40 +29,40 @@ def make_config():
       "get_all_job": {
         "fields": [
           {
+            "active": True,
             "name": "disclaimer",
             "req": False,
             "type": "`$STRING`",
-            "active": True,
             "index$": 0,
           },
           {
+            "active": True,
             "name": "term",
             "req": False,
             "type": "`$STRING`",
-            "active": True,
             "index$": 1,
           },
         ],
         "name": "get_all_job",
         "op": {
           "list": {
+            "input": "data",
             "name": "list",
             "points": [
               {
+                "active": True,
+                "args": {},
                 "method": "GET",
                 "orig": "/",
+                "parts": [],
+                "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "active": True,
-                "parts": [],
-                "args": {},
-                "select": {},
                 "index$": 0,
               },
             ],
-            "input": "data",
             "key$": "list",
           },
         },

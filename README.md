@@ -1,24 +1,8 @@
 # RemoteOkJobs SDK
 
-Browse 30,000+ remote job listings from Remote OK, the remote-only jobs board
+Remote OK Jobs API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Remote OK Jobs API
-
-[Remote OK](https://remoteok.com/) is a remote-only job board that aggregates and publishes thousands of remote job postings across software engineering, design, marketing, customer support, and other categories. Its public API exposes the same listings that appear on the site.
-
-The API is a single JSON endpoint that returns all currently available listings. Each listing typically includes:
-
-- Identifiers: `id`, `slug`
-- Employer and role: `company`, `company_logo`, `position`
-- Timestamps: `date`, `epoch`, `last_updated`
-- Geography: `location`
-- Content: `description`, `tags`
-- Compensation: `salary_min`, `salary_max`
-- Links: `url` (listing) and `apply_url`
-
-The endpoint is served with CORS enabled and does not require authentication. Postings often embed a spam-prevention keyword (e.g. "FEASIBLE", "PLUSH") that applicants are expected to quote, so consumers should preserve the `description` field intact when rendering jobs.
 
 ## Try it
 
@@ -52,29 +36,31 @@ gem install remote-ok-jobs-sdk
 luarocks install remote-ok-jobs-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { RemoteOkJobsSDK } from 'remote-ok-jobs'
 
-const client = new RemoteOkJobsSDK({})
+const client = new RemoteOkJobsSDK({
+  apikey: process.env.REMOTE-OK-JOBS_APIKEY,
+})
 
 // List all getalljobs
 const getalljobs = await client.GetAllJob().list()
+console.log(getalljobs.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -104,7 +90,7 @@ The API exposes one entity:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **GetAllJob** | All current remote job listings as a JSON array, served from the single endpoint `GET /api`. | `/` |
+| **GetAllJob** |  | `/` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -114,12 +100,16 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from remoteokjobs_sdk import RemoteOkJobsSDK
 
-client = RemoteOkJobsSDK({})
+client = RemoteOkJobsSDK({
+    "apikey": os.environ.get("REMOTE-OK-JOBS_APIKEY"),
+})
 
 # List all getalljobs
-getalljobs, err = client.GetAllJob(None).list(None, None)
+getalljobs, err = client.GetAllJob().list()
+print(getalljobs)
 ```
 
 ### PHP
@@ -128,10 +118,13 @@ getalljobs, err = client.GetAllJob(None).list(None, None)
 <?php
 require_once 'remoteokjobs_sdk.php';
 
-$client = new RemoteOkJobsSDK([]);
+$client = new RemoteOkJobsSDK([
+    "apikey" => getenv("REMOTE-OK-JOBS_APIKEY"),
+]);
 
 // List all getalljobs
-[$getalljobs, $err] = $client->GetAllJob(null)->list(null, null);
+[$getalljobs, $err] = $client->GetAllJob()->list();
+print_r($getalljobs);
 ```
 
 ### Golang
@@ -139,10 +132,13 @@ $client = new RemoteOkJobsSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/remote-ok-jobs-sdk/go"
 
-client := sdk.NewRemoteOkJobsSDK(map[string]any{})
+client := sdk.NewRemoteOkJobsSDK(map[string]any{
+    "apikey": os.Getenv("REMOTE-OK-JOBS_APIKEY"),
+})
 
 // List all getalljobs
 getalljobs, err := client.GetAllJob(nil).List(nil, nil)
+fmt.Println(getalljobs)
 ```
 
 ### Ruby
@@ -150,10 +146,13 @@ getalljobs, err := client.GetAllJob(nil).List(nil, nil)
 ```ruby
 require_relative "RemoteOkJobs_sdk"
 
-client = RemoteOkJobsSDK.new({})
+client = RemoteOkJobsSDK.new({
+  "apikey" => ENV["REMOTE-OK-JOBS_APIKEY"],
+})
 
 # List all getalljobs
-getalljobs, err = client.GetAllJob(nil).list(nil, nil)
+getalljobs, err = client.GetAllJob().list
+puts getalljobs
 ```
 
 ### Lua
@@ -161,10 +160,13 @@ getalljobs, err = client.GetAllJob(nil).list(nil, nil)
 ```lua
 local sdk = require("remote-ok-jobs_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("REMOTE-OK-JOBS_APIKEY"),
+})
 
 -- List all getalljobs
-local getalljobs, err = client:GetAllJob(nil):list(nil, nil)
+local getalljobs, err = client:GetAllJob():list()
+print(getalljobs)
 ```
 
 ## Unit testing in offline mode
@@ -183,25 +185,21 @@ const result = await client.GetAllJob().load({ id: 'test01' })
 ### Python
 
 ```python
-client = RemoteOkJobsSDK.test(None, None)
-result, err = client.GetAllJob(None).load(
-    {"id": "test01"}, None
-)
+client = RemoteOkJobsSDK.test()
+result, err = client.GetAllJob().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = RemoteOkJobsSDK::test(null, null);
-[$result, $err] = $client->GetAllJob(null)->load(
-    ["id" => "test01"], null
-);
+$client = RemoteOkJobsSDK::test();
+[$result, $err] = $client->GetAllJob()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.GetAllJob(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -210,19 +208,15 @@ result, err := client.GetAllJob(nil).Load(
 ### Ruby
 
 ```ruby
-client = RemoteOkJobsSDK.test(nil, nil)
-result, err = client.GetAllJob(nil).load(
-  { "id" => "test01" }, nil
-)
+client = RemoteOkJobsSDK.test
+result, err = client.GetAllJob().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:GetAllJob(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:GetAllJob():load({ id = "test01" })
 ```
 
 ## How it works
@@ -326,16 +320,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Remote OK Jobs API
-
-- Upstream: [https://remoteok.com/](https://remoteok.com/)
-- API docs: [https://remoteok.com/api](https://remoteok.com/api)
-
-- Attribution required: link back to the listing URL on Remote OK with a do-follow link (no `nofollow`).
-- Must mention Remote OK as the source so traffic flows back.
-- The Remote OK name may be used freely; the Remote OK logo requires written permission.
-- Non-compliance may result in access being suspended.
 
 ---
 
