@@ -10,7 +10,7 @@ The Lua SDK for the RemoteOkJobs API — an entity-oriented client using Lua con
 
 ## Install
 ```bash
-luarocks install remote-ok-jobs-sdk
+luarocks install voxgig-sdk-remote-ok-jobs
 ```
 
 If the module is not yet published, add the source directory to

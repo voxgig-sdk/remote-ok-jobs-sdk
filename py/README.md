@@ -10,7 +10,7 @@ The Python SDK for the RemoteOkJobs API — an entity-oriented client following 
 
 ## Install
 ```bash
-pip install remote-ok-jobs-sdk
+pip install voxgig-sdk-remote-ok-jobs
 ```
 
 Or install from source:

@@ -10,7 +10,7 @@ The PHP SDK for the RemoteOkJobs API — an entity-oriented client using PHP con
 
 ## Install
 ```bash
-composer require voxgig/remote-ok-jobs-sdk
+composer require voxgig-sdk/remote-ok-jobs
 ```
 
 

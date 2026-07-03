@@ -10,7 +10,7 @@ The TypeScript SDK for the RemoteOkJobs API — a type-safe, entity-oriented cli
 
 ## Install
 ```bash
-npm install remote-ok-jobs
+npm install @voxgig-sdk/remote-ok-jobs
 ```
 ## Tutorial: your first API call
 

@@ -10,13 +10,13 @@ The Ruby SDK for the RemoteOkJobs API — an entity-oriented client using idioma
 
 ## Install
 ```bash
-gem install remote-ok-jobs-sdk
+gem install voxgig-sdk-remote-ok-jobs
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "remote-ok-jobs-sdk"
+gem "voxgig-sdk-remote-ok-jobs"
 ```
 
 Then run:

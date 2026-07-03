@@ -8,12 +8,14 @@ source = {
   dir = "remote-ok-jobs-sdk/lua"
 }
 description = {
-  summary = "RemoteOkJobs SDK for Lua",
-  license = "MIT"
+  summary = "Unofficial generated Lua SDK for the Remote OK Jobs public API. Not affiliated with or endorsed by the upstream API provider.",
+  homepage = "https://github.com/voxgig-sdk/remote-ok-jobs-sdk",
+  issues_url = "https://github.com/voxgig-sdk/remote-ok-jobs-sdk/issues",
+  license = "MIT",
+  labels = { "voxgig", "sdk", "generated-sdk", "openapi", "api-client", "remote-ok-jobs" }
 }
 dependencies = {
   "lua >= 5.3",
-  "dkjson >= 2.5",
   "dkjson >= 2.5",
 }
 build = {
