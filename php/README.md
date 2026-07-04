@@ -29,18 +29,16 @@ require_once 'remoteokjobs_sdk.php';
 $client = new RemoteOkJobsSDK();
 ```
 
-### 2. List getalljobs
+### 2. List getalljob records
 
 ```php
 try {
-    $result = $client->getalljob()->list();
-    if (is_array($result)) {
-        foreach ($result as $item) {
-            $d = $item->data_get();
-            echo $d["id"] . " " . $d["name"] . "\n";
-        }
+    // list() returns an array of GetAllJob records — iterate directly.
+    $getalljobs = $client->GetAllJob()->list();
+    foreach ($getalljobs as $item) {
+        echo $item["id"] . " " . $item["name"] . "\n";
     }
-} catch (\Exception $err) {
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -86,13 +84,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = RemoteOkJobsSDK::test();
+$client = RemoteOkJobsSDK::test([
+    "entity" => ["getalljob" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->getalljob()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$getalljob = $client->GetAllJob()->load(["id" => "test01"]);
+print_r($getalljob);
 ```
 
 ### Use a custom fetch function
@@ -229,7 +231,7 @@ API path: `/`
 
 ### GetAllJob
 
-Create an instance: `const get_all_job = client.get_all_job`
+Create an instance: `$get_all_job = $client->GetAllJob();`
 
 #### Operations
 
@@ -246,8 +248,9 @@ Create an instance: `const get_all_job = client.get_all_job`
 
 #### Example: List
 
-```ts
-const get_all_jobs = await client.get_all_job.list()
+```php
+// list() returns an array of GetAllJob records (throws on error).
+$get_all_jobs = $client->GetAllJob()->list();
 ```
 
 
@@ -322,7 +325,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$getalljob = $client->getalljob();
+$getalljob = $client->GetAllJob();
 $getalljob->load(["id" => "example_id"]);
 
 // $getalljob->dataGet() now returns the loaded getalljob data

@@ -208,13 +208,7 @@ class RemoteOkJobsSDK
   end
 
 
-  # Idiomatic facade: client.get_all_job.list / client.get_all_job.load({ "id" => ... })
-  def get_all_job
-    require_relative 'entity/get_all_job_entity'
-    @get_all_job ||= GetAllJobEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.get_all_job instead.
+  # Canonical facade: client.GetAllJob.list / client.GetAllJob.load({ "id" => ... })
   def GetAllJob(data = nil)
     require_relative 'entity/get_all_job_entity'
     GetAllJobEntity.new(self, data)

@@ -28,16 +28,14 @@ require_relative "RemoteOkJobs_sdk"
 client = RemoteOkJobsSDK.new
 ```
 
-### 2. List getalljobs
+### 2. List getalljob records
 
 ```ruby
 begin
-  result = client.getalljob.list
-  if result.is_a?(Array)
-    result.each do |item|
-      d = item.data_get
-      puts "#{d["id"]} #{d["name"]}"
-    end
+  # list returns an Array of GetAllJob records — iterate directly.
+  getalljobs = client.GetAllJob.list
+  getalljobs.each do |item|
+    puts "#{item["id"]} #{item["name"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -85,13 +83,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = RemoteOkJobsSDK.test
+client = RemoteOkJobsSDK.test({
+  "entity" => { "getalljob" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.getalljob.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+getalljob = client.GetAllJob.load({ "id" => "test01" })
+puts getalljob
 ```
 
 ### Use a custom fetch function
@@ -224,7 +226,7 @@ API path: `/`
 
 ### GetAllJob
 
-Create an instance: `const get_all_job = client.get_all_job`
+Create an instance: `get_all_job = client.GetAllJob`
 
 #### Operations
 
@@ -241,8 +243,9 @@ Create an instance: `const get_all_job = client.get_all_job`
 
 #### Example: List
 
-```ts
-const get_all_jobs = await client.get_all_job.list()
+```ruby
+# list returns an Array of GetAllJob records (raises on error).
+get_all_jobs = client.GetAllJob.list
 ```
 
 
@@ -317,7 +320,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-getalljob = client.getalljob
+getalljob = client.GetAllJob
 getalljob.load({ "id" => "example_id" })
 
 # getalljob.data_get now returns the loaded getalljob data

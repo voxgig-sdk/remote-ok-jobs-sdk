@@ -31,14 +31,16 @@ from remoteokjobs_sdk import RemoteOkJobsSDK
 client = RemoteOkJobsSDK()
 ```
 
-### 2. List getalljobs
+### 2. List getalljob records
+
+`list()` returns a `list` of records (each a `dict`) and raises on
+error — iterate it directly.
 
 ```python
 try:
-    result = client.getalljob.list()
-    for item in result:
-        d = item.data_get()
-        print(d["id"], d["name"])
+    getalljobs = client.GetAllJob().list({})
+    for getalljob in getalljobs:
+        print(getalljob)
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -86,8 +88,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = RemoteOkJobsSDK.test()
 
-result = client.getalljob.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+getalljob = client.GetAllJob().load({"id": "test01"})
+# getalljob contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -221,7 +224,7 @@ API path: `/`
 
 ### GetAllJob
 
-Create an instance: `const get_all_job = client.get_all_job`
+Create an instance: `get_all_job = client.GetAllJob()`
 
 #### Operations
 
@@ -238,8 +241,8 @@ Create an instance: `const get_all_job = client.get_all_job`
 
 #### Example: List
 
-```ts
-const get_all_jobs = await client.get_all_job.list()
+```python
+get_all_jobs = client.GetAllJob().list({})
 ```
 
 
@@ -313,7 +316,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-getalljob = client.getalljob
+getalljob = client.GetAllJob()
 getalljob.load({"id": "example_id"})
 
 # getalljob.data_get() now returns the loaded getalljob data

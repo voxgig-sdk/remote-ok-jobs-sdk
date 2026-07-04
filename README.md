@@ -26,9 +26,11 @@ import { RemoteOkJobsSDK } from '@voxgig-sdk/remote-ok-jobs'
 
 const client = new RemoteOkJobsSDK()
 
-// List all getalljobs
-const getalljobs = await client.getalljob.list()
-console.log(getalljobs.data)
+// List all getalljobs (returns GetAllJob[])
+const getalljobs = await client.GetAllJob().list()
+for (const getalljob of getalljobs) {
+  console.log(getalljob)
+}
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -83,9 +85,10 @@ from remoteokjobs_sdk import RemoteOkJobsSDK
 
 client = RemoteOkJobsSDK()
 
-# List all getalljobs
-getalljobs = client.getalljob.list()
-print(getalljobs)
+# List all getalljobs (returns a list, raises on error)
+getalljobs = client.GetAllJob().list({})
+for getalljob in getalljobs:
+    print(getalljob)
 ```
 
 ### PHP
@@ -96,8 +99,8 @@ require_once 'remoteokjobs_sdk.php';
 
 $client = new RemoteOkJobsSDK();
 
-// List all getalljobs (throws on error)
-$getalljobs = $client->getalljob()->list();
+// List all getalljobs (returns an array; throws on error)
+$getalljobs = $client->GetAllJob()->list();
 print_r($getalljobs);
 ```
 
@@ -120,8 +123,8 @@ require_relative "RemoteOkJobs_sdk"
 
 client = RemoteOkJobsSDK.new
 
-# List all getalljobs
-getalljobs = client.getalljob.list
+# List all getalljobs (returns an Array; raises on error)
+getalljobs = client.GetAllJob.list
 puts getalljobs
 ```
 
@@ -133,7 +136,7 @@ local sdk = require("remote-ok-jobs_sdk")
 local client = sdk.new()
 
 -- List all getalljobs
-local getalljobs, err = client:getalljob():list()
+local getalljobs, err = client:GetAllJob():list()
 print(getalljobs)
 ```
 
@@ -146,22 +149,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = RemoteOkJobsSDK.test()
-const result = await client.getalljob.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const getalljob = await client.GetAllJob().load({ id: 'test01' })
+// getalljob is a bare GetAllJob populated with mock data
+console.log(getalljob)
 ```
 
 ### Python
 
 ```python
 client = RemoteOkJobsSDK.test()
-result = client.getalljob.load({"id": "test01"})
+getalljob = client.GetAllJob().load({"id": "test01"})
+print(getalljob)
 ```
 
 ### PHP
 
 ```php
-$client = RemoteOkJobsSDK::test();
-$result = $client->getalljob()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = RemoteOkJobsSDK::test([
+    "entity" => ["getalljob" => ["test01" => ["id" => "test01"]]],
+]);
+$getalljob = $client->GetAllJob()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -176,15 +184,18 @@ result, err := client.GetAllJob(nil).Load(
 ### Ruby
 
 ```ruby
-client = RemoteOkJobsSDK.test
-result = client.getalljob.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = RemoteOkJobsSDK.test({
+  "entity" => { "getalljob" => { "test01" => { "id" => "test01" } } },
+})
+getalljob = client.GetAllJob.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:getalljob():load({ id = "test01" })
+local result, err = client:GetAllJob():load({ id = "test01" })
 ```
 
 ## How it works
@@ -232,6 +243,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

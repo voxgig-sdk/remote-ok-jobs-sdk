@@ -220,25 +220,15 @@ class RemoteOkJobsSDK:
         }
 
 
-    @property
-    def get_all_job(self):
-        """Idiomatic facade: client.get_all_job.list() / client.get_all_job.load({"id": ...})."""
-        from entity.get_all_job_entity import GetAllJobEntity
-        cached = getattr(self, "_get_all_job", None)
-        if cached is None:
-            cached = GetAllJobEntity(self, None)
-            self._get_all_job = cached
-        return cached
-
-    def GetAllJob(self, data=None):
-        # Deprecated: use client.get_all_job instead.
+    def GetAllJob(self, data=None) -> "GetAllJobEntity":
+        """Entity factory: client.GetAllJob().list({}) / client.GetAllJob().load({"id": ...})."""
         from entity.get_all_job_entity import GetAllJobEntity
         return GetAllJobEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "RemoteOkJobsSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -258,3 +248,9 @@ class RemoteOkJobsSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.get_all_job_entity import GetAllJobEntity

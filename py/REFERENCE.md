@@ -80,7 +80,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## GetAllJobEntity
 
 ```python
-get_all_job = client.get_all_job
+get_all_job = client.GetAllJob()
 ```
 
 ### Fields
@@ -97,7 +97,9 @@ get_all_job = client.get_all_job
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.get_all_job.list({})
+results = client.GetAllJob().list({})
+for get_all_job in results:
+    print(get_all_job)
 ```
 
 ### Common Methods

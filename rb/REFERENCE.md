@@ -86,7 +86,7 @@ same parameters as `direct()`. Raises on error.
 ## GetAllJobEntity
 
 ```ruby
-get_all_job = client.get_all_job
+get_all_job = client.GetAllJob
 ```
 
 ### Fields
@@ -103,7 +103,7 @@ get_all_job = client.get_all_job
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.get_all_job.list(nil)
+results = client.GetAllJob.list(nil)
 ```
 
 ### Common Methods

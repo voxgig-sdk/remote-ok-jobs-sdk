@@ -85,7 +85,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## GetAllJobEntity
 
 ```php
-$get_all_job = $client->get_all_job();
+$get_all_job = $client->GetAllJob();
 ```
 
 ### Fields
@@ -102,7 +102,7 @@ $get_all_job = $client->get_all_job();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->get_all_job()->list([]);
+$results = $client->GetAllJob()->list([]);
 ```
 
 ### Common Methods

@@ -204,14 +204,7 @@ class RemoteOkJobsSDK {
 
 
 
-  _get_all_job?: GetAllJobEntity
-
-  // Idiomatic facade: `client.get_all_job.list()` / `client.get_all_job.load({ id })`.
-  get get_all_job(): GetAllJobEntity {
-    return (this._get_all_job ??= new GetAllJobEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.get_all_job` instead. */
+  // Entity access: `client.GetAllJob().list()` / `client.GetAllJob().load({ id })`.
   GetAllJob(data?: any) {
     const self = this
     return new GetAllJobEntity(self,data)

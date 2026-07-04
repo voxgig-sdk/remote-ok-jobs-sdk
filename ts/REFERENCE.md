@@ -109,7 +109,7 @@ Alias for `RemoteOkJobsSDK.test()`.
 ## GetAllJobEntity
 
 ```ts
-const get_all_job = client.get_all_job
+const get_all_job = client.GetAllJob()
 ```
 
 ### Fields
@@ -126,7 +126,7 @@ const get_all_job = client.get_all_job
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.get_all_job.list()
+const results = await client.GetAllJob().list()
 ```
 
 ### Common Methods

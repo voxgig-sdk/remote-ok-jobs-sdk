@@ -233,10 +233,10 @@ class RemoteOkJobsSDK
 
     private $_get_all_job = null;
 
-    // Idiomatic facade: $client->get_all_job()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias GetAllJob() (PHP method
-    // names are case-insensitive).
-    public function get_all_job($data = null)
+    // Canonical facade: $client->GetAllJob()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->get_all_job()
+    // resolves here too.
+    public function GetAllJob($data = null)
     {
         require_once __DIR__ . '/entity/get_all_job_entity.php';
         if ($data === null) {

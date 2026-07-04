@@ -83,7 +83,7 @@ same parameters as `direct()`.
 ## GetAllJobEntity
 
 ```lua
-local get_all_job = client:get_all_job(nil)
+local get_all_job = client:GetAllJob(nil)
 ```
 
 ### Fields
@@ -100,7 +100,7 @@ local get_all_job = client:get_all_job(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:get_all_job():list()
+local results, err = client:GetAllJob():list()
 ```
 
 ### Common Methods
