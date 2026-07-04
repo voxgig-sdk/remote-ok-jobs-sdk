@@ -50,8 +50,7 @@ class TestGetAllJobEntity:
         get_all_job_ref01_ent = client.GetAllJob(None)
         get_all_job_ref01_match = {}
 
-        get_all_job_ref01_list_result, err = get_all_job_ref01_ent.list(get_all_job_ref01_match, None)
-        assert err is None
+        get_all_job_ref01_list_result = get_all_job_ref01_ent.list(get_all_job_ref01_match, None)
         assert isinstance(get_all_job_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _get_all_job_basic_setup(extra):
         "REMOTEOKJOBS_TEST_GET_ALL_JOB_ENTID": idmap,
         "REMOTEOKJOBS_TEST_LIVE": "FALSE",
         "REMOTEOKJOBS_TEST_EXPLAIN": "FALSE",
-        "REMOTEOKJOBS_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _get_all_job_basic_setup(extra):
     if env.get("REMOTEOKJOBS_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("REMOTEOKJOBS_APIKEY"),
             },
             extra or {},
         ])

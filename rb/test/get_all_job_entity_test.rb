@@ -43,8 +43,7 @@ class GetAllJobEntityTest < Minitest::Test
     get_all_job_ref01_ent = client.GetAllJob(nil)
     get_all_job_ref01_match = {}
 
-    get_all_job_ref01_list_result, err = get_all_job_ref01_ent.list(get_all_job_ref01_match, nil)
-    assert_nil err
+    get_all_job_ref01_list_result = get_all_job_ref01_ent.list(get_all_job_ref01_match, nil)
     assert get_all_job_ref01_list_result.is_a?(Array)
 
   end
@@ -83,7 +82,6 @@ def get_all_job_basic_setup(extra)
     "REMOTEOKJOBS_TEST_GET_ALL_JOB_ENTID" => idmap,
     "REMOTEOKJOBS_TEST_LIVE" => "FALSE",
     "REMOTEOKJOBS_TEST_EXPLAIN" => "FALSE",
-    "REMOTEOKJOBS_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -95,7 +93,6 @@ def get_all_job_basic_setup(extra)
   if env["REMOTEOKJOBS_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["REMOTEOKJOBS_APIKEY"],
       },
       extra || {},
     ])

@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  GetAllJob,
+  GetAllJobListMatch,
+} from '../RemoteOkJobsTypes'
 
 // TODO: needs Entity superclass
-class GetAllJobEntity extends RemoteOkJobsEntityBase {
+class GetAllJobEntity extends RemoteOkJobsEntityBase<GetAllJob> {
 
   constructor(client: RemoteOkJobsSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class GetAllJobEntity extends RemoteOkJobsEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: GetAllJobListMatch, ctrl?: Control): Promise<GetAllJob[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class GetAllJobEntity extends RemoteOkJobsEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<GetAllJob[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

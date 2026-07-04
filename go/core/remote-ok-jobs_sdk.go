@@ -245,6 +245,9 @@ func (sdk *RemoteOkJobsSDK) Direct(fetchargs map[string]any) (map[string]any, er
 }
 
 
+// GetAllJob returns a GetAllJob entity bound to this client.
+// Idiomatic usage: client.GetAllJob(nil).List(nil, nil) or
+// client.GetAllJob(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *RemoteOkJobsSDK) GetAllJob(data map[string]any) RemoteOkJobsEntity {
 	return NewGetAllJobEntityFunc(sdk, data)
 }

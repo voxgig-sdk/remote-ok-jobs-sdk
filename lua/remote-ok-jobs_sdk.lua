@@ -244,6 +244,19 @@ end
 
 
 
+-- Idiomatic facade: client:get_all_job():list() / client:get_all_job():load({ id = ... })
+function RemoteOkJobsSDK:get_all_job(data)
+  local EntityMod = require("entity.get_all_job_entity")
+  if data == nil then
+    if self._get_all_job == nil then
+      self._get_all_job = EntityMod.new(self, nil)
+    end
+    return self._get_all_job
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:get_all_job() instead.
 function RemoteOkJobsSDK:GetAllJob(data)
   local EntityMod = require("entity.get_all_job_entity")
   return EntityMod.new(self, data)

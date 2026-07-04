@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch GetAllJobListMatch
+---@param ctrl? table
+---@return GetAllJob[]
+---@return string? err
 function GetAllJobEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

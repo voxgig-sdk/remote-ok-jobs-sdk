@@ -113,7 +113,6 @@ function basicSetup(extra?: any) {
     'REMOTE_OK_JOBS_TEST_GET_ALL_JOB_ENTID': idmap,
     'REMOTE_OK_JOBS_TEST_LIVE': 'FALSE',
     'REMOTE_OK_JOBS_TEST_EXPLAIN': 'FALSE',
-    'REMOTE_OK_JOBS_APIKEY': 'NONE',
   })
 
   idmap = env['REMOTE_OK_JOBS_TEST_GET_ALL_JOB_ENTID']
@@ -123,7 +122,6 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new RemoteOkJobsSDK(merge([
       {
-        apikey: env.REMOTE_OK_JOBS_APIKEY,
       },
       extra
     ]))
