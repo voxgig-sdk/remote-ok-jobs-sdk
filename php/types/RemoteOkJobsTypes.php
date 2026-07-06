@@ -19,7 +19,7 @@ class GetAllJob
     public ?string $term = null;
 }
 
-/** Match filter for GetAllJob#list (any subset of GetAllJob fields). */
+/** Request payload for GetAllJob#list. */
 class GetAllJobListMatch
 {
     public ?string $disclaimer = null;

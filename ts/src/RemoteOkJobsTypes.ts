@@ -10,5 +10,8 @@ export interface GetAllJob {
   term?: string
 }
 
-export type GetAllJobListMatch = Partial<GetAllJob>
+export interface GetAllJobListMatch {
+  disclaimer?: string
+  term?: string
+}
 

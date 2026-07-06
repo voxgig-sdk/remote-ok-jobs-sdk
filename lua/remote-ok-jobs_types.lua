@@ -11,6 +11,8 @@
 ---@field term? string
 
 ---@class GetAllJobListMatch
+---@field disclaimer? string
+---@field term? string
 
 local M = {}
 

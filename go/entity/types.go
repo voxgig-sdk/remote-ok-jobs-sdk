@@ -14,8 +14,7 @@ type GetAllJob struct {
 	Term *string `json:"term,omitempty"`
 }
 
-// GetAllJobListMatch mirrors the get_all_job fields as an all-optional match
-// filter (Go analog of Partial<GetAllJob>).
+// GetAllJobListMatch is the typed request payload for GetAllJob.ListTyped.
 type GetAllJobListMatch struct {
 	Disclaimer *string `json:"disclaimer,omitempty"`
 	Term *string `json:"term,omitempty"`

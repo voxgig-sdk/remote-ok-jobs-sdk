@@ -8,7 +8,7 @@ Complete API reference for the RemoteOkJobs Python SDK.
 ### Constructor
 
 ```python
-from remote-ok-jobs_sdk import RemoteOkJobsSDK
+from remoteokjobs_sdk import RemoteOkJobsSDK
 
 client = RemoteOkJobsSDK(options)
 ```
@@ -87,17 +87,17 @@ get_all_job = client.GetAllJob()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `disclaimer` | ``$STRING`` | No |  |
-| `term` | ``$STRING`` | No |  |
+| `disclaimer` | `str` | No |  |
+| `term` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.GetAllJob().list({})
+results = client.GetAllJob().list()
 for get_all_job in results:
     print(get_all_job)
 ```

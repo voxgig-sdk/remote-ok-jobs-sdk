@@ -116,8 +116,8 @@ const get_all_job = client.GetAllJob()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `disclaimer` | ``$STRING`` | No |  |
-| `term` | ``$STRING`` | No |  |
+| `disclaimer` | `string` | No |  |
+| `term` | `string` | No |  |
 
 ### Operations
 

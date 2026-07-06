@@ -21,7 +21,7 @@ GetAllJob = Struct.new(
   keyword_init: true
 )
 
-# Match filter for GetAllJob#list (any subset of GetAllJob fields).
+# Request payload for GetAllJob#list.
 #
 # @!attribute [rw] disclaimer
 #   @return [String, nil]

@@ -221,7 +221,7 @@ class RemoteOkJobsSDK:
 
 
     def GetAllJob(self, data=None) -> "GetAllJobEntity":
-        """Entity factory: client.GetAllJob().list({}) / client.GetAllJob().load({"id": ...})."""
+        """Entity factory: client.GetAllJob().list() / client.GetAllJob().load({"id": ...})."""
         from entity.get_all_job_entity import GetAllJobEntity
         return GetAllJobEntity(self, data)
 
