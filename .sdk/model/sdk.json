@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -195,14 +192,17 @@
           "url": "https://www.remoteok.com"
         },
         "description": "Remote OK is the #1 remote-only jobs board on the web. It has over 30,000+ remote job listings, adding new ones every day. With this API, now you can build apps with our data feed which covers 80% of remote jobs on the web.",
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "description": "Production server",
             "url": "https://remoteok.com/api"
           }
         ],
+        "summary": "Remote OK is the #1 remote-only jobs board on the web.",
         "title": "Remote OK Jobs API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "website": "https://remoteok.com"
       },
       "option": {},
       "target": {
@@ -255,6 +255,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -305,6 +308,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

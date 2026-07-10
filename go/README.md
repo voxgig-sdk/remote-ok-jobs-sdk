@@ -50,12 +50,12 @@ import (
 func main() {
     client := sdk.New()
 
-    // List getalljob records — the value is the array of records itself.
-    getalljobs, err := client.GetAllJob(nil).List(nil, nil)
+    // List getAllJob records — the value is the array of records itself.
+    getAllJobs, err := client.GetAllJob(nil).List(nil, nil)
     if err != nil {
         panic(err)
     }
-    for _, item := range getalljobs.([]any) {
+    for _, item := range getAllJobs.([]any) {
         fmt.Println(item)
     }
 }
@@ -137,13 +137,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-getalljob, err := client.GetAllJob(nil).List(
+getAllJob, err := client.GetAllJob(nil).List(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(getalljob) // the returned mock data
+fmt.Println(getAllJob) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -247,9 +247,9 @@ Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    getalljob, err := client.GetAllJob(nil).List(map[string]any{/* fields */}, nil)
+    getAllJob, err := client.GetAllJob(nil).List(map[string]any{/* fields */}, nil)
     if err != nil { /* handle */ }
-    // getalljob is the returned record
+    // getAllJob is the returned record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -274,7 +274,7 @@ API path: `/`
 
 ### GetAllJob
 
-Create an instance: `get_all_job := client.GetAllJob(nil)`
+Create an instance: `getAllJob := client.GetAllJob(nil)`
 
 #### Operations
 
@@ -292,11 +292,11 @@ Create an instance: `get_all_job := client.GetAllJob(nil)`
 #### Example: List
 
 ```go
-get_all_jobs, err := client.GetAllJob(nil).List(nil, nil)
+getAllJobs, err := client.GetAllJob(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(get_all_jobs) // the array of records
+fmt.Println(getAllJobs) // the array of records
 ```
 
 

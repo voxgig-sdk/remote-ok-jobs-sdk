@@ -16,9 +16,9 @@ main: {
           url: "https://remoteok.com/api"
         }
       ]
+      summary: "Remote OK is the #1 remote-only jobs board on the web."
       title: "Remote OK Jobs API"
       version: "1.0.0"
+      website: "https://remoteok.com"
     }
   }
-}
-

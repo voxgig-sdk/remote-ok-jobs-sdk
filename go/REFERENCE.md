@@ -90,7 +90,8 @@ same parameters as `Direct()`.
 ## GetAllJobEntity
 
 ```go
-get_all_job := client.GetAllJob(nil)
+getAllJob := client.GetAllJob(nil)
+fmt.Println(getAllJob.GetName()) // "get_all_job"
 ```
 
 ### Fields
@@ -108,6 +109,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.GetAllJob(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
