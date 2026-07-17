@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- RemoteOkJobs SDK exists test
 
 local sdk = require("remote-ok-jobs_sdk")
 
